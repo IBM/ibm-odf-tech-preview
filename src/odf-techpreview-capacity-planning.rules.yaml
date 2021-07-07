@@ -6,7 +6,7 @@
 # - and define additional metrics, namely,
 #   - odf_system_raw_capacity_consumption_rate = The rate of capacity consumption for the given storage array
 #   - odf_system_raw_capacity_time_until_exhaustion = Elapsed time (in seconds) until the given storage array run out of capacity
-#   - odf_system_raw_capacity_forecast = Forecast in the future of total used raw capacity of the system
+#   - odf_system_raw_capacity_forecast = Forecast in the future of total used raw capacity of the given storage array
 #---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
