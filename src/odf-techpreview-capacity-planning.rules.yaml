@@ -5,7 +5,7 @@
 #   - odf_system_raw_capacity_used_bytes = Total Used Raw Capacity of the system
 # - and define additional metrics, namely,
 #   - odf_system_raw_capacity_consumption_rate = The rate of capacity consumption for the given storage array
-#   - odf_system_raw_capacity_time_until_exhaustion = Elapse time (in seconds) until the given storage array run out of capacity
+#   - odf_system_raw_capacity_time_until_exhaustion = Elapsed time (in seconds) until the given storage array run out of capacity
 #   - odf_system_raw_capacity_forecast = Forecast in the future of total used raw capacity of the system
 #---
 apiVersion: monitoring.coreos.com/v1
@@ -18,7 +18,7 @@ spec:
   - name: techpreview-capacity-planning.rules
     rules:
     - expr: ( rate(odf_system_raw_capacity_used_bytes[30d]) )
-      record: odf_system_raw_capacity_rate_consumption
+      record: odf_system_raw_capacity_consumption_rate
     - expr: ( ( odf_system_raw_capacity_total_bytes - odf_system_raw_capacity_used_bytes ) / (rate(odf_system_raw_capacity_used_bytes[30d]) ) )
       record: odf_system_raw_capacity_time_until_exhaustion
     - expr: ( predict_linear( odf_system_raw_capacity_used_bytes[15m], 300) )
