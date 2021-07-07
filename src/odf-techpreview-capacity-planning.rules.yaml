@@ -1,3 +1,13 @@
+#---
+# The following is the Prometheus recording rules
+# - which use ODF standardized metrics related to storage capacity, namely, 
+#   - odf_system_raw_capacity_total_bytes = Total Raw Capacity of the system
+#   - odf_system_raw_capacity_used_bytes = Total Used Raw Capacity of the system
+# - and define additional metrics, namely,
+#   - odf_system_raw_capacity_consumption_rate = The rate of capacity consumption for the given storage array
+#   - odf_system_raw_capacity_time_until_exhaustion = Elapse time (in seconds) until the given storage array run out of capacity
+#   - odf_system_raw_capacity_forecast = Forecast in the future of total used raw capacity of the system
+#---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -7,9 +17,9 @@ spec:
   groups:
   - name: techpreview-capacity-planning.rules
     rules:
-    - expr: ( rate(ceph_cluster_total_used_bytes[30d]) )
-      record: odf_rate_consumption
-    - expr: ( ( ceph_cluster_total_bytes - ceph_cluster_total_used_bytes  ) / (rate(ceph_cluster_total_used_bytes[30d]) ) )
-      record: odf_time_until_exhaustion
-    - expr: ( predict_linear( ceph_cluster_total_used_bytes[15m], 300) )
-      record: odf_used_capacity_forecast
+    - expr: ( rate(odf_system_raw_capacity_used_bytes[30d]) )
+      record: odf_system_raw_capacity_rate_consumption
+    - expr: ( ( odf_system_raw_capacity_total_bytes - odf_system_raw_capacity_used_bytes ) / (rate(odf_system_raw_capacity_used_bytes[30d]) ) )
+      record: odf_system_raw_capacity_time_until_exhaustion
+    - expr: ( predict_linear( odf_system_raw_capacity_used_bytes[15m], 300) )
+      record: odf_system_raw_capacity_used_forecast
