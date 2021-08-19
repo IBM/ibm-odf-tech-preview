@@ -8,6 +8,7 @@ The technology preview presented here uses Openshift Data Foundation APIs to imp
 In this TechPreview, we will use 2 ODF metrics:
 * odf_system_raw_capacity_total_bytes
 * odf_system_raw_capacity_used_bytes
+
 and will produce 3 ODF metrics:
 * odf_system_raw_capacity_rate_consumption
 * odf_system_raw_capacity_time_until_exhaustion
