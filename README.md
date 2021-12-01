@@ -1,4 +1,4 @@
-# IBM ODF Technology Preview
+# IBM OpenShift Data Foundation (ODF) Technology Preview
 The technology preview presented here uses Openshift Data Foundation (release 4.9 and beyond) APIs to implement Capacity Management use cases. 
 * The key concept in ODF is "standardized metrics". A common metric name will enable initiative projects such as the ones related to the [Telemetry Working Group](https://openinfralabs.org/telemetry/) and also the example in this TechPreview.
 * Sample storage capacity management uses ODF metrics to forecast and to plan:
